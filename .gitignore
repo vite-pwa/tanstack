@@ -1,8 +1,7 @@
 node_modules
 .DS_Store
 dist
-dev-dist
 # intellij stuff
 .idea/
-examples/*/.vitepress/cache/
-examples/*/.vitepress/dist/
+examples/*/.output/
+examples/*/.tanstack/
