@@ -24,6 +24,7 @@ export async function cleanupJSTypes() {
 
 export default defineConfig({
   entry: [
+    'src/config.ts',
     'src/create-nitro-pwa-context.ts',
     'src/create-pwa-context.ts',
     'src/index.ts',
