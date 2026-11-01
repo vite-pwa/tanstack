@@ -8,7 +8,9 @@ export function createManifestTransform(
       if (!e.url.endsWith('.html')) {
         continue
       }
-      const url = e.url.startsWith('/') ? e.url.slice(1) : e.url
+      const url = e.url.startsWith('/')
+        ? e.url.slice(1)
+        : e.url
       if (url === 'index.html') {
         e.url = base
       }
@@ -20,7 +22,9 @@ export function createManifestTransform(
         else {
           parts[parts.length - 1] = parts[parts.length - 1]!.replace(regexp, '')
         }
-        e.url = parts.length > 1 ? parts.slice(0, parts.length - 1).join('/') : parts[0] as string
+        e.url = parts.length > 1
+          ? parts.slice(0, parts.length - 1).join('/')
+          : parts[0] as string
       }
     }
 
