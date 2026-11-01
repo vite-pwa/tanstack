@@ -1,5 +1,5 @@
 {
-  "name": "unplugin-pwa-tanstack-start",
+  "name": "tanstack-start-react",
   "private": true,
   "type": "module",
   "imports": {
@@ -27,7 +27,7 @@
     "tailwindcss": "catalog:tanstackreact"
   },
   "devDependencies": {
-    "vite-pwa-tanstack": "workspace:*",
+    "@vite-pwa/tanstack": "workspace:*",
     "@tailwindcss/typography": "catalog:tanstackreact",
     "@tanstack/devtools-vite": "catalog:tanstackreact",
     "@tanstack/router-cli": "catalog:tanstackreact",
