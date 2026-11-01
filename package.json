@@ -1,5 +1,5 @@
 {
-  "name": "vite-pwa-tanstack",
+  "name": "@vite-pwa/tanstack",
   "type": "module",
   "version": "0.0.0",
   "description": "Zero-config PWA for TanStack",
@@ -33,7 +33,7 @@
     "./vite/build-sw": "./dist/vite/build-sw.mjs",
     "./vite/nitro": "./dist/vite/nitro.mjs",
     "./vite/nitro/config": "./dist/vite/nitro/config.mjs",
-    "./react-components":  "./dist/react-components.mjs",
+    "./react-components": "./dist/react-components.mjs",
     "./package.json": "./package.json"
   },
   "types": "dist/index.d.mts",
@@ -102,5 +102,9 @@
     "tsdown": "catalog:build",
     "typescript": "catalog:typescript",
     "vite": "catalog:utils"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }
