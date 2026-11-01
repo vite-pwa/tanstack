@@ -3,14 +3,12 @@ import antfu from '@antfu/eslint-config'
 export default antfu(
   {
     ignores: [
-      '**/build/**',
-      '**/dist/**',
-      '**/dev-dist/**',
+      '**/.output/**',
+      '**/.tanstack/**',
       '**/node_modules/**',
-      '!.vitepress',
-      '!.vitepress/*',
-      '!.vitepress/dist/',
       'pnpm-workspace.yaml',
+      // examples with their own linting config: we must add the lint
+      '**/examples/**/*',
     ],
   },
   {
