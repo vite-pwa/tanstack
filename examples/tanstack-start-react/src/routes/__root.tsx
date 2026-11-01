@@ -1,7 +1,7 @@
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import { PWAAssets } from 'vite-pwa-tanstack/react-components'
+import { PWAAssets } from '@vite-pwa/tanstack/react-components'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 

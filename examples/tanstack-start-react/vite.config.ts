@@ -1,12 +1,12 @@
 import tailwindcss from '@tailwindcss/vite'
 import { devtools } from '@tanstack/devtools-vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+import { TanStackNitroPWAPlugin } from '@vite-pwa/tanstack/vite/nitro'
 import { DevTools as ViteDevTools } from '@vitejs/devtools'
 import viteReact from '@vitejs/plugin-react'
 import { nitro } from 'nitro/vite'
 import { defineConfig } from 'vite'
 import Inspect from 'vite-plugin-inspect'
-import { TanStackNitroPWAPlugin } from 'vite-pwa-tanstack/vite/nitro'
 
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
@@ -26,12 +26,7 @@ const config = defineConfig({
         // and missing from the SW precache manifest, will check it with the new hook
         '/': { prerender: true },
         '/about': { prerender: true },
-        // '/app/': { prerender: true },
-        // '/app/about': { prerender: true },
       },
-      // rollupConfig: {
-      //   external: [/^@sentry\//],
-      // },
     }),
     tailwindcss(),
     tanstackStart({
@@ -40,32 +35,6 @@ const config = defineConfig({
       },
     }),
     viteReact(),
-    {
-      name: 'test',
-      apply: 'build',
-      enforce: 'post',
-      applyToEnvironment(environment) {
-        console.log('applyToEnvironment:', environment.name)
-        return true
-      },
-      configEnvironment(name, config) {
-        console.log('configEnvironment:', { name, consumer: config.consumer, x: config.build?.outDir })
-      },
-      configResolved(config) {
-        console.log('configResolved:', config.build.outDir)
-      },
-    },
-    /* {
-      name: 'test2',
-      apply: 'build',
-      applyToEnvironment(environment) {
-        console.log('applyToEnvironment:', environment.name)
-        return environment.name === 'client'
-      },
-      closeBundle() {
-        console.log('test2:closeBundle')
-      },
-    }, */
     TanStackNitroPWAPlugin({
       minify: false,
       disable: false,
