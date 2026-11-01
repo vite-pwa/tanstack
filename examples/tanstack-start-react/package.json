@@ -1,0 +1,46 @@
+{
+  "name": "unplugin-pwa-tanstack-start",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#/*": "./src/*"
+  },
+  "scripts": {
+    "dev": "vite dev --port 3000",
+    "generate-routes": "tsr generate",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "catalog:tanstackreact",
+    "@tanstack/react-devtools": "catalog:tanstackreact",
+    "@tanstack/react-router": "catalog:tanstackreact",
+    "@tanstack/react-router-devtools": "catalog:tanstackreact",
+    "@tanstack/react-router-ssr-query": "catalog:tanstackreact",
+    "@tanstack/react-start": "catalog:tanstackreact",
+    "@tanstack/router-plugin": "catalog:tanstackreact",
+    "lucide-react": "catalog:tanstackreact",
+    "nitro": "catalog:utils",
+    "react": "catalog:tanstackreact",
+    "react-dom": "catalog:tanstackreact",
+    "tailwindcss": "catalog:tanstackreact"
+  },
+  "devDependencies": {
+    "vite-pwa-tanstack": "workspace:*",
+    "@tailwindcss/typography": "catalog:tanstackreact",
+    "@tanstack/devtools-vite": "catalog:tanstackreact",
+    "@tanstack/router-cli": "catalog:tanstackreact",
+    "@testing-library/dom": "catalog:tanstackreact",
+    "@testing-library/react": "catalog:tanstackreact",
+    "@types/node": "catalog:types",
+    "@types/react": "catalog:tanstackreact",
+    "@types/react-dom": "catalog:tanstackreact",
+    "@vitejs/devtools": "catalog:utils",
+    "@vitejs/plugin-react": "catalog:tanstackreact",
+    "jsdom": "catalog:tanstackreact",
+    "typescript": "catalog:typescript",
+    "vite": "catalog:utils",
+    "vite-plugin-inspect": "catalog:utils"
+  }
+}
