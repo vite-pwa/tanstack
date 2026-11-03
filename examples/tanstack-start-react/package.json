@@ -27,7 +27,6 @@
     "tailwindcss": "catalog:tanstackreact"
   },
   "devDependencies": {
-    "@vite-pwa/tanstack": "workspace:*",
     "@tailwindcss/typography": "catalog:tanstackreact",
     "@tanstack/devtools-vite": "catalog:tanstackreact",
     "@tanstack/router-cli": "catalog:tanstackreact",
@@ -36,6 +35,7 @@
     "@types/node": "catalog:types",
     "@types/react": "catalog:tanstackreact",
     "@types/react-dom": "catalog:tanstackreact",
+    "@vite-pwa/tanstack": "workspace:*",
     "@vitejs/devtools": "catalog:utils",
     "@vitejs/plugin-react": "catalog:tanstackreact",
     "jsdom": "catalog:tanstackreact",
