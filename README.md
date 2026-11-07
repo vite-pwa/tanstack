@@ -74,7 +74,7 @@ This package provides two different plugins depending on your setup: a standard 
 If you are using TanStack Start, use the `TanStackNitroPWAPlugin` variant.
 
 **⚠️ Important Requirements:**
-* **Nitro v3 RC:** You must use the latest Nitro v3 Release Candidate `3.0.261029-rc` (or newer) which includes the necessary lifecycle hook for the correct Service Worker pre-cache manifest generation.
+* **Nitro v3 RC:** You must use the latest Nitro v3 Release Candidate `3.0.261103-rc` (or newer) which includes the necessary lifecycle hook for the correct Service Worker pre-cache manifest generation.
 * **Prerendering:** You **must** explicitly enable prerendering for your routes in the `nitro` configuration (`routeRules`) and in the `tanstackStart` plugin to add offline support. Without pre-rendering (e.g., generating the `index.html`), offline support will not work as the entry points will be missing from the SW precache manifest.
 
 ```ts
