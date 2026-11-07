@@ -136,7 +136,7 @@ function prepareNitroModule<
           createManifestTransform,
           normalizeManifest,
           {
-            extractSwDestNameFromSource,
+            // extractSwDestNameFromSource,
             normalizePath,
             resolveSWNames,
           },
@@ -147,17 +147,15 @@ function prepareNitroModule<
             normalizeManifest,
           }) => (normalizeManifest)),
           import('@vite-pwa/workbox-build/utils/resolve-sw-names').then(({
-            extractSwDestNameFromSource,
+            // extractSwDestNameFromSource,
             normalizePath,
             resolveSWNames,
           }) => ({
-            extractSwDestNameFromSource,
+            // extractSwDestNameFromSource,
             normalizePath,
             resolveSWNames,
           })),
         ])
-
-        const consumerFilename = ctx.consumerOptions.filename
 
         await loadExternalConfiguration(
           ctx,
@@ -197,16 +195,18 @@ function prepareNitroModule<
               ctx.resolvedOptions.generateSW ??= {} as ResolvedGenerateSW<any, any>
               options = ctx.resolvedOptions.generateSW as OptionsType
               swSrc = 'x'
+              // TODO: use swDest directly from resolved options once fixed at unplugin-pwa core
               filename = ctx.consumerOptions.filename = normalizePath(
-                path.resolve(ctx.outDir, consumerFilename || 'sw.js'),
+                path.resolve(ctx.outDir, ctx.resolvedOptions.generateSW!.swDest as string),
               )
               break
             case 'inject-manifest':
               ctx.resolvedOptions.injectManifest ??= {} as ResolvedInjectManifest<any, any>
               options = ctx.resolvedOptions.injectManifest as OptionsType
               swSrc = ctx.resolvedOptions.injectManifest!.swSrc
+              // TODO: use swDest directly from resolved options once fixed at unplugin-pwa core
               filename = ctx.consumerOptions.filename = normalizePath(
-                path.resolve(ctx.outDir, consumerFilename || extractSwDestNameFromSource(swSrc as string)),
+                path.resolve(ctx.outDir, ctx.resolvedOptions.injectManifest!.swDest as string),
               )
               ctx.resolvedOptions.injectManifest!.swDest = filename
               break
@@ -214,8 +214,9 @@ function prepareNitroModule<
               ctx.resolvedOptions.buildSW ??= {} as ResolvedBuildSW<any, any>
               options = ctx.resolvedOptions.buildSW as OptionsType
               swSrc = ctx.resolvedOptions.buildSW!.swSrc
+              // TODO: use swDest directly from resolved options once fixed at unplugin-pwa core
               filename = ctx.consumerOptions.filename = normalizePath(
-                path.resolve(ctx.outDir, consumerFilename || extractSwDestNameFromSource(swSrc as string)),
+                path.resolve(ctx.outDir, ctx.resolvedOptions.buildSW!.swDest as string),
               )
               ctx.resolvedOptions.buildSW!.swDest = filename
               break
