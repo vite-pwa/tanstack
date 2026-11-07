@@ -116,7 +116,7 @@ function prepareNitroModule<
           return
         }
         // await the rest of modules to invoke the build:before hook before configuring nitro aliases
-        nitro.hooks.hook('rollup:before', () => {
+        nitro.hooks.hook('build:config', () => {
           ctx.tanstack.buildSWAlias = nitro.options.alias
         })
         ctx.tanstack.nitro = nitro
@@ -136,7 +136,7 @@ function prepareNitroModule<
           createManifestTransform,
           normalizeManifest,
           {
-            extractSwDestNameFromSource,
+            // extractSwDestNameFromSource,
             normalizePath,
             resolveSWNames,
           },
@@ -147,11 +147,11 @@ function prepareNitroModule<
             normalizeManifest,
           }) => (normalizeManifest)),
           import('@vite-pwa/workbox-build/utils/resolve-sw-names').then(({
-            extractSwDestNameFromSource,
+            // extractSwDestNameFromSource,
             normalizePath,
             resolveSWNames,
           }) => ({
-            extractSwDestNameFromSource,
+            // extractSwDestNameFromSource,
             normalizePath,
             resolveSWNames,
           })),
@@ -195,20 +195,29 @@ function prepareNitroModule<
               ctx.resolvedOptions.generateSW ??= {} as ResolvedGenerateSW<any, any>
               options = ctx.resolvedOptions.generateSW as OptionsType
               swSrc = 'x'
-              filename = ctx.resolvedOptions.generateSW!.swDest as string
+              // TODO: use swDest directly from resolved options once fixed at unplugin-pwa core
+              filename = ctx.consumerOptions.filename = normalizePath(
+                path.resolve(ctx.outDir, ctx.resolvedOptions.generateSW!.swDest as string),
+              )
               break
             case 'inject-manifest':
               ctx.resolvedOptions.injectManifest ??= {} as ResolvedInjectManifest<any, any>
               options = ctx.resolvedOptions.injectManifest as OptionsType
               swSrc = ctx.resolvedOptions.injectManifest!.swSrc
-              filename = ctx.consumerOptions.filename || extractSwDestNameFromSource(swSrc as string)
+              // TODO: use swDest directly from resolved options once fixed at unplugin-pwa core
+              filename = ctx.consumerOptions.filename = normalizePath(
+                path.resolve(ctx.outDir, ctx.resolvedOptions.injectManifest!.swDest as string),
+              )
               ctx.resolvedOptions.injectManifest!.swDest = filename
               break
             case 'build-sw':
               ctx.resolvedOptions.buildSW ??= {} as ResolvedBuildSW<any, any>
               options = ctx.resolvedOptions.buildSW as OptionsType
               swSrc = ctx.resolvedOptions.buildSW!.swSrc
-              filename = ctx.consumerOptions.filename || extractSwDestNameFromSource(swSrc as string)
+              // TODO: use swDest directly from resolved options once fixed at unplugin-pwa core
+              filename = ctx.consumerOptions.filename = normalizePath(
+                path.resolve(ctx.outDir, ctx.resolvedOptions.buildSW!.swDest as string),
+              )
               ctx.resolvedOptions.buildSW!.swDest = filename
               break
           }
@@ -280,7 +289,7 @@ function prepareNitroModule<
       })
 
       // await the rest of modules to invoke the build:before hook before configuring nitro aliases
-      nitro.hooks.hook('rollup:before', () => {
+      nitro.hooks.hook('build:config', () => {
         ctx.tanstack.buildSWAlias = nitro.options.alias
         if (ctx.strategy === 'build-sw') {
           ctx.resolvedOptions.buildSW!.alias = nitro.options.alias
